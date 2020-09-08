@@ -50,6 +50,7 @@ public class ConfigManager {
 			pFileName = System.getProperty(PROP_RESORUCE);
 			File pFile = new File(pFileName);
 			if (pFile.exists()) {
+			
 				FileInputStream fis = new FileInputStream(pFile);
 				if (fis != null) loadProperties(fis);
 				fis.close();
@@ -68,10 +69,12 @@ public class ConfigManager {
 	}
 	
 	public void loadProperties(InputStream is) {
+		
 		try {
 			LOG.info("Loading properties fron input stream");
 			props.load(is);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			LOG.error("Exception while loading properties", e);
 		}
 	}
@@ -89,11 +92,13 @@ public class ConfigManager {
 	}
 	
 	public int getIntProperty(String key, int defaultValue) {
+		
 		String strVal = props.getProperty(key);
 		try {
 			int val = Integer.parseInt(strVal);
 			return val;
-		} catch (NumberFormatException e) {
+		} 
+		catch (NumberFormatException e) {
 			LOG.info("Not an integer: " + strVal);
 		}
 				
@@ -101,6 +106,7 @@ public class ConfigManager {
 	}
 	
 	public boolean getBooleanProperty(String key, boolean defaultValue) {
+		
 		String strVal = props.getProperty(key);
 		if (strVal != null && !"".equals(strVal.trim())) {
 			if (strVal.trim().toLowerCase().equalsIgnoreCase("true")) return true;
