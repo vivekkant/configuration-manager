@@ -44,7 +44,10 @@ public class ConfigManager {
 		String pFileName = null;
 		try {
 			InputStream is = this.getClass().getResourceAsStream('/' + PROP_RESORUCE);
-			if (is != null) loadProperties(is);
+			if (is != null) {
+				LOG.info("Loading properties from : /app.properties");
+				loadProperties(is);
+			}
 			is.close();
 
 			pFileName = System.getProperty(PROP_RESORUCE);
@@ -65,6 +68,8 @@ public class ConfigManager {
 		catch (IOException e) {
 			LOG.info("IO Exception", e);
 		}
+		
+		LOG.debug("Final Properties: " + props);
 		
 	}
 	
